@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Employees</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div style="color:#FF5733; font-family: 'Verdana'" class="m-2 pt-5"><h2>Manage Employees</h2></div>
+  <div  class="m-2"> <a style="color:#FF5733; text-decoration: none; font-family: 'Verdana';" class="h3 m-2" th:href="@{'/employees/new'}">Add New Employee</a> </div>
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+  <div>
+    <table class="table table-bordered border-dark table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Level</th>
+        <th>Tax Id</th>
+        <th></th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="biodata: ${listBiodatas}" >
+      <tr>
+        <td>[[${biodata.id}]]</td>
+        <td>[[${biodata.firstName}]]</td>
+        <td>[[${biodata.lastName}]]</td>
+        <td>[[${biodata.email}]]</td>
+        <td>[[${biodata.address}]]</td>
+        <td>[[${biodata.phoneNumber}]]</td>
+        <td>[[${biodata.level}]]</td>
+        <td>[[${biodata.taxId}]]</td>
+        <td>
+          <a class="p-1" th:href="@{'/employees/edit/' + ${biodata.id}}"><i class="fas fa-edit fa-lg" style="color: #808080"></i></a>
+          <a class="p-1" th:href="@{'/employees/delete/' + ${biodata.id}}"><i class="fas fa-trash fa-lg" style="color: #1A1A1A"></i></a>
+        </td>
+      </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script src="https://kit.fontawesome.com/8fc7552d5d.js" crossorigin="anonymous"></script>
+</body>
+</html>
